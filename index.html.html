@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosistema Fintech & ERP Chile</title>
+    <style>
+        :root {
+            --primary-color: #2D3748;
+            --accent-color: #3182CE;
+            --bg-color: #F7FAFC;
+            --card-bg: #FFFFFF;
+            --text-main: #1A202C;
+            --text-muted: #718096;
+            --border-color: #E2E8F0;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --radius: 8px;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            color: #A0AEC0;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        details {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #EDF2F7;
+            transition: background-color 0.2s;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary:hover {
+            background-color: #E2E8F0;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        details[open] summary::after {
+            content: '-';
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+        }
+
+        .card {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        .card-badge {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            background-color: #EBF8FF;
+            color: var(--accent-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-decoration: none;
+            align-self: flex-start;
+            transition: color 0.2s;
+        }
+
+        .card-link:hover {
+            color: #2B6CB0;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #2B6CB0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Directorio Ecosistema Fintech & ERP</h1>
+        <p>Encuentra el software ideal para administrar y escalar tu negocio en Chile.</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar por nombre, función o categoría...">
+        </div>
+    </header>
+
+    <main id="directory">
+
+        <details open>
+            <summary>ERP y Contabilidad Integral</summary>
+            <div class="cards-grid">
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Clay</h3>
+                            <span class="card-badge">ERP</span>
+                        </div>
+                        <p class="card-desc">ERP contable chileno orientado a PYMEs. Gestión de documentos tributarios, contabilidad y reportes.</p>
+                    </div>
+                    <a href="https://www.clay.cl" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Nubox</h3>
+                            <span class="card-badge">ERP</span>
+                        </div>
+                        <p class="card-desc">Software contable y tributario en la nube muy popular en Chile. Automatiza libros, balances y declaraciones.</p>
+                    </div>
+                    <a href="https://www.nubox.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">De Fontana</h3>
+                            <span class="card-badge">ERP</span>
+                        </div>
+                        <p class="card-desc">ERP chileno con foco en contabilidad, remuneraciones y gestión administrativa para empresas medianas.</p>
+                    </div>
+                    <a href="https://www.defontana.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Transtecnia</h3>
+                            <span class="card-badge">ERP</span>
+                        </div>
+                        <p class="card-desc">Solución ERP para empresas constructoras y de servicios con módulos de proyectos y costos.</p>
+                    </div>
+                    <a href="https://www.transtecnia.cl" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">SAP B1</h3>
+                            <span class="card-badge">ERP</span>
+                        </div>
+                        <p class="card-desc">ERP global de SAP para medianas empresas. Módulos de finanzas, inventario, ventas y operaciones.</p>
+                    </div>
+                    <a href="https://www.sap.com/latinamerica/products/erp/business-one.html" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">QuickBooks</h3>
+                            <span class="card-badge">ERP</span>
+                        </div>
+                        <p class="card-desc">Software contable muy usado por freelancers y pequeñas empresas. Simple, con conexión bancaria y facturas.</p>
+                    </div>
+                    <a href="https://quickbooks.intuit.com/global/" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Uwigo</h3>
+                            <span class="card-badge">ERP</span>
+                        </div>
+                        <p class="card-desc">Plataforma ERP chilena enfocada en facturación electrónica, contabilidad y gestión de proveedores.</p>
+                    </div>
+                    <a href="https://www.uwigo.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Odoo</h3>
+                            <span class="card-badge">ERP</span>
+                        </div>
+                        <p class="card-desc">ERP open source modular. Cubre CRM, ventas, inventario, contabilidad, RRHH y más.</p>
+                    </div>
+                    <a href="https://www.odoo.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Conciliación Bancaria, Open Banking e Inteligencia</summary>
+            <div class="cards-grid">
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">CFOremoto</h3>
+                            <span class="card-badge">INTELIGENCIA</span>
+                        </div>
+                        <p class="card-desc">Plataforma que automatiza el flujo de caja e inteligencia financiera conectándose al SII y bancos.</p>
+                    </div>
+                    <a href="https://cforemoto.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Fapro</h3>
+                            <span class="card-badge">INTELIGENCIA</span>
+                        </div>
+                        <p class="card-desc">Soluciones de inteligencia financiera y automatización B2B con tecnología open data para medir riesgo comercial.</p>
+                    </div>
+                    <a href="https://fapro.app" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Fintoc</h3>
+                            <span class="card-badge">API BANCARIA</span>
+                        </div>
+                        <p class="card-desc">API Open Banking chilena. Conecta aplicaciones con cuentas bancarias para leer movimientos en tiempo real.</p>
+                    </div>
+                    <a href="https://fintoc.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Floid</h3>
+                            <span class="card-badge">API BANCARIA</span>
+                        </div>
+                        <p class="card-desc">Plataforma de datos financieros abiertos. Permite conectar y verificar cuentas bancarias automáticamente.</p>
+                    </div>
+                    <a href="https://floid.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Chipax</h3>
+                            <span class="card-badge">CONCILIACIÓN</span>
+                        </div>
+                        <p class="card-desc">Gestión financiera para PYMES: concilia bancos, proyecta flujo de caja y centraliza cuentas por cobrar/pagar.</p>
+                    </div>
+                    <a href="https://www.chipax.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Due Mint</h3>
+                            <span class="card-badge">CONCILIACIÓN</span>
+                        </div>
+                        <p class="card-desc">Herramienta de conciliación bancaria automática con conexión directa a cuentas y cuadre de movimientos.</p>
+                    </div>
+                    <a href="https://www.duemint.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Bambo / Buk</h3>
+                            <span class="card-badge">CONCILIACIÓN</span>
+                        </div>
+                        <p class="card-desc">Módulo financiero integrado a Buk para empresas con nómina, conciliación y control de pagos de personal.</p>
+                    </div>
+                    <a href="https://www.buk.cl" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Facturación e Impuestos</summary>
+            <div class="cards-grid">
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Sii (portal)</h3>
+                            <span class="card-badge">FACTURACIÓN</span>
+                        </div>
+                        <p class="card-desc">Portal oficial del Servicio de Impuestos Internos. Emisión gratuita de boletas y facturas electrónicas.</p>
+                    </div>
+                    <a href="https://homer.sii.cl" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Libre DTE</h3>
+                            <span class="card-badge">FACTURACIÓN</span>
+                        </div>
+                        <p class="card-desc">Plataforma gratuita de facturación electrónica conforme al SII. Ideal para independientes y microempresas.</p>
+                    </div>
+                    <a href="https://libredte.cl" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Bsale / Relbux</h3>
+                            <span class="card-badge">FACTURACIÓN</span>
+                        </div>
+                        <p class="card-desc">Punto de venta + facturación electrónica. Bsale es muy usado en retail; integra stock, ventas y DTE.</p>
+                    </div>
+                    <a href="https://www.bsale.cl" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Fizko</h3>
+                            <span class="card-badge">IMPUESTOS</span>
+                        </div>
+                        <p class="card-desc">Plataforma de gestión tributaria que automatiza declaraciones de IVA, renta y otros impuestos en Chile.</p>
+                    </div>
+                    <a href="https://apps.apple.com/cl/app/fizko/id6756032895" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Cenit</h3>
+                            <span class="card-badge">IMPUESTOS</span>
+                        </div>
+                        <p class="card-desc">Software tributario especializado para contadores. Manejo de libros tributarios y declaraciones automáticas.</p>
+                    </div>
+                    <a href="https://cenit.ai" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Invoices, Cobros y Pagos</summary>
+            <div class="cards-grid">
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Wasabil</h3>
+                            <span class="card-badge">INVOICES</span>
+                        </div>
+                        <p class="card-desc">Gestión de cobros y cuentas por cobrar. Automatiza recordatorios y seguimiento de facturas pendientes.</p>
+                    </div>
+                    <a href="https://wasabil.com/" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Toku</h3>
+                            <span class="card-badge">COBRANZA</span>
+                        </div>
+                        <p class="card-desc">Plataforma de cobros que centraliza cuentas por cobrar y automatiza la recolección de pagos recurrentes.</p>
+                    </div>
+                    <a href="https://trytoku.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Bemmbo</h3>
+                            <span class="card-badge">PAGOS B2B</span>
+                        </div>
+                        <p class="card-desc">Software de gestión de pagos y cobros para empresas, automatizando el flujo de caja y cuentas por pagar.</p>
+                    </div>
+                    <a href="https://www.bemmbo.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Tu Pana</h3>
+                            <span class="card-badge">INVOICES</span>
+                        </div>
+                        <p class="card-desc">Plataforma de gestión de facturas y cobros para freelancers y pequeñas empresas en Latinoamérica.</p>
+                    </div>
+                    <a href="https://www.tupana.ai" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Pantera</h3>
+                            <span class="card-badge">ADMINISTRACIÓN</span>
+                        </div>
+                        <p class="card-desc">Software de administración para condominios y edificios: gastos comunes, morosidad, comunicaciones.</p>
+                    </div>
+                    <a href="https://adminpantera.com/" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Financiamiento PYME y Flujo de Caja</summary>
+            <div class="cards-grid">
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Xepelin</h3>
+                            <span class="card-badge">FINANCIAMIENTO</span>
+                        </div>
+                        <p class="card-desc">Plataforma B2B que transforma la gestión de cuentas por pagar y cobrar con opciones de financiamiento y factoring.</p>
+                    </div>
+                    <a href="https://xepelin.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Cumplo</h3>
+                            <span class="card-badge">FINANCIAMIENTO</span>
+                        </div>
+                        <p class="card-desc">Plataforma de financiamiento colaborativo B2B que conecta a PYMEs con inversionistas para impulsar su liquidez.</p>
+                    </div>
+                    <a href="https://cumplo.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+            </div>
+        </details>
+
+    </main>
+
+    <footer>
+        <p>¿Falta tu plataforma o startup en este ecosistema?</p>
+        <a href="mailto:pedrorponte@gmail.com?subject=Nueva%20Startup%20para%20el%20Directorio%20Fintech" class="btn">Postular mi Startup</a>
+    </footer>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let filter = this.value.toLowerCase();
+            let detailsElements = document.querySelectorAll('details');
+            
+            detailsElements.forEach(details => {
+                let cards = details.querySelectorAll('.card');
+                let hasVisibleCards = false;
+
+                cards.forEach(card => {
+                    let title = card.querySelector('.card-title').innerText.toLowerCase();
+                    let desc = card.querySelector('.card-desc').innerText.toLowerCase();
+                    let badge = card.querySelector('.card-badge').innerText.toLowerCase();
+
+                    if (title.includes(filter) || desc.includes(filter) || badge.includes(filter)) {
+                        card.style.display = 'flex';
+                        hasVisibleCards = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                if (filter !== "") {
+                    details.open = hasVisibleCards;
+                }
+                
+                details.style.display = hasVisibleCards || filter === "" ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
