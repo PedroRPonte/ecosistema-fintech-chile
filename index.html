@@ -16,19 +16,18 @@
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             
-            /* Colores Base */
             --color-btn: #2563EB;
             --color-btn-hover: #1D4ED8;
         }
 
-        /* Clases de Categorías (Definen el color de acento) */
-        .cat-erp { --theme-color: #3B82F6; --theme-bg: #EFF6FF; } /* Azul */
-        .cat-inteligencia { --theme-color: #8B5CF6; --theme-bg: #F5F3FF; } /* Morado */
-        .cat-facturacion { --theme-color: #10B981; --theme-bg: #ECFDF5; } /* Verde */
-        .cat-cobros { --theme-color: #F59E0B; --theme-bg: #FFFBEB; } /* Naranja */
-        .cat-financiamiento { --theme-color: #06B6D4; --theme-bg: #ECFEFF; } /* Cyan */
-        .cat-stock { --theme-color: #EF4444; --theme-bg: #FEF2F2; } /* Rojo */
-        .cat-rrhh { --theme-color: #EC4899; --theme-bg: #FDF2F8; } /* Rosa */
+        /* Clases de Categorías */
+        .cat-erp { --theme-color: #3B82F6; --theme-bg: #EFF6FF; }
+        .cat-inteligencia { --theme-color: #8B5CF6; --theme-bg: #F5F3FF; }
+        .cat-facturacion { --theme-color: #10B981; --theme-bg: #ECFDF5; }
+        .cat-cobros { --theme-color: #F59E0B; --theme-bg: #FFFBEB; }
+        .cat-financiamiento { --theme-color: #06B6D4; --theme-bg: #ECFEFF; }
+        .cat-stock { --theme-color: #EF4444; --theme-bg: #FEF2F2; }
+        .cat-rrhh { --theme-color: #EC4899; --theme-bg: #FDF2F8; }
 
         body {
             font-family: var(--font-family);
@@ -92,7 +91,6 @@
             padding: 0 1rem;
         }
 
-        /* Acordeón Estilizado */
         details {
             background-color: #ffffff;
             border-radius: var(--radius-soft);
@@ -151,7 +149,6 @@
             border-top: 1px solid #E2E8F0;
         }
 
-        /* Tarjetas con curvas y delineado superior */
         .card {
             background-color: #ffffff;
             border: 1px solid #E2E8F0;
@@ -173,8 +170,15 @@
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 1rem;
+        }
+
+        .title-badge-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
         }
 
         .card-title {
@@ -193,6 +197,45 @@
             border-radius: var(--radius-pill);
             font-weight: 700;
             letter-spacing: 0.05em;
+        }
+
+        /* ESTILOS DEL BOTÓN DE VOTOS */
+        .upvote-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 0.5rem 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-main);
+            min-width: 45px;
+        }
+
+        .upvote-btn:hover {
+            background-color: #F1F5F9;
+            border-color: #CBD5E1;
+        }
+
+        .upvote-btn.voted {
+            background-color: var(--theme-bg);
+            border-color: var(--theme-color);
+            color: var(--theme-color);
+        }
+
+        .upvote-icon {
+            font-size: 1rem;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+
+        .upvote-count {
+            font-size: 0.9rem;
+            font-weight: 700;
+            line-height: 1;
         }
 
         .card-desc {
@@ -267,8 +310,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Clay</h3>
-                            <span class="card-badge">ERP</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Clay</h3>
+                                <span class="card-badge">ERP</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">142</span>
+                            </button>
                         </div>
                         <p class="card-desc">ERP contable chileno orientado a PYMEs. Gestión de documentos tributarios, contabilidad automatizada y reportería en tiempo real.</p>
                     </div>
@@ -277,8 +326,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Nubox</h3>
-                            <span class="card-badge">ERP</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Nubox</h3>
+                                <span class="card-badge">ERP</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">98</span>
+                            </button>
                         </div>
                         <p class="card-desc">Software contable y tributario en la nube muy popular en Chile. Automatiza libros, balances y declaraciones.</p>
                     </div>
@@ -287,8 +342,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">De Fontana</h3>
-                            <span class="card-badge">ERP</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">De Fontana</h3>
+                                <span class="card-badge">ERP</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">45</span>
+                            </button>
                         </div>
                         <p class="card-desc">ERP chileno robusto con foco en contabilidad, remuneraciones y gestión administrativa para empresas medianas.</p>
                     </div>
@@ -297,8 +358,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Odoo</h3>
-                            <span class="card-badge">ERP OPEN SOURCE</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Odoo</h3>
+                                <span class="card-badge">ERP OPEN SOURCE</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">76</span>
+                            </button>
                         </div>
                         <p class="card-desc">Solución modular internacional. Cubre CRM, ventas, inventario, contabilidad y operaciones. Altamente personalizable.</p>
                     </div>
@@ -313,8 +380,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">CFOremoto</h3>
-                            <span class="card-badge">CFO TECH</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">CFOremoto</h3>
+                                <span class="card-badge">CFO TECH</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">56</span>
+                            </button>
                         </div>
                         <p class="card-desc">Plataforma que automatiza el flujo de caja e inteligencia financiera conectándose directamente al SII y a tus bancos.</p>
                     </div>
@@ -323,8 +396,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Fintoc</h3>
-                            <span class="card-badge">API BANCARIA</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Fintoc</h3>
+                                <span class="card-badge">API BANCARIA</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">112</span>
+                            </button>
                         </div>
                         <p class="card-desc">API de Open Banking chilena. Conecta aplicaciones de terceros con cuentas bancarias para leer movimientos en tiempo real.</p>
                     </div>
@@ -333,8 +412,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Chipax</h3>
-                            <span class="card-badge">CONCILIACIÓN</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Chipax</h3>
+                                <span class="card-badge">CONCILIACIÓN</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">89</span>
+                            </button>
                         </div>
                         <p class="card-desc">Gestión financiera visual para PYMES. Concilia bancos, proyecta flujo de caja y centraliza cuentas por cobrar y pagar.</p>
                     </div>
@@ -343,8 +428,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Fapro</h3>
-                            <span class="card-badge">INTELIGENCIA B2B</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Fapro</h3>
+                                <span class="card-badge">INTELIGENCIA B2B</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">34</span>
+                            </button>
                         </div>
                         <p class="card-desc">Soluciones de inteligencia financiera con tecnología open data para analizar y medir el riesgo comercial de clientes y proveedores.</p>
                     </div>
@@ -359,8 +450,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Sii (Portal)</h3>
-                            <span class="card-badge">OFICIAL</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Sii (Portal)</h3>
+                                <span class="card-badge">OFICIAL</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">41</span>
+                            </button>
                         </div>
                         <p class="card-desc">Portal oficial del Servicio de Impuestos Internos. Permite la emisión gratuita de boletas y facturas electrónicas.</p>
                     </div>
@@ -369,8 +466,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Libre DTE</h3>
-                            <span class="card-badge">OPEN SOURCE</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Libre DTE</h3>
+                                <span class="card-badge">OPEN SOURCE</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">83</span>
+                            </button>
                         </div>
                         <p class="card-desc">Plataforma gratuita de facturación electrónica conforme al SII. Excelente alternativa para desarrolladores e independientes.</p>
                     </div>
@@ -379,8 +482,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Fizko</h3>
-                            <span class="card-badge">TRIBUTARIO</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Fizko</h3>
+                                <span class="card-badge">TRIBUTARIO</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">27</span>
+                            </button>
                         </div>
                         <p class="card-desc">Plataforma móvil de gestión tributaria que automatiza declaraciones de IVA, renta y otros impuestos en Chile.</p>
                     </div>
@@ -389,8 +498,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Cenit</h3>
-                            <span class="card-badge">CONTADORES</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Cenit</h3>
+                                <span class="card-badge">CONTADORES</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">19</span>
+                            </button>
                         </div>
                         <p class="card-desc">Software tributario impulsado por IA, especializado para contadores. Automatiza el manejo de libros y declaraciones.</p>
                     </div>
@@ -405,8 +520,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Clara</h3>
-                            <span class="card-badge">TARJETAS & GASTOS</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Clara</h3>
+                                <span class="card-badge">TARJETAS & GASTOS</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">105</span>
+                            </button>
                         </div>
                         <p class="card-desc">Tarjetas de crédito corporativas y plataforma integral de gestión de gastos para startups. Simplifica el control de viáticos y suscripciones.</p>
                     </div>
@@ -415,8 +536,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Toku</h3>
-                            <span class="card-badge">RECAUDACIÓN</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Toku</h3>
+                                <span class="card-badge">RECAUDACIÓN</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">64</span>
+                            </button>
                         </div>
                         <p class="card-desc">Plataforma que centraliza cuentas por cobrar y automatiza la recolección de pagos recurrentes y suscripciones.</p>
                     </div>
@@ -425,8 +552,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Bemmbo</h3>
-                            <span class="card-badge">PAGOS B2B</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Bemmbo</h3>
+                                <span class="card-badge">PAGOS B2B</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">72</span>
+                            </button>
                         </div>
                         <p class="card-desc">Software de gestión que automatiza el flujo de aprobación y pago a proveedores, conectando facturas con cuentas bancarias.</p>
                     </div>
@@ -435,8 +568,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Wasabil</h3>
-                            <span class="card-badge">COBRANZA</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Wasabil</h3>
+                                <span class="card-badge">COBRANZA</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">21</span>
+                            </button>
                         </div>
                         <p class="card-desc">Gestión automatizada de cuentas por cobrar. Envía recordatorios de pago inteligentes y hace seguimiento de facturas vencidas.</p>
                     </div>
@@ -451,8 +590,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Xepelin</h3>
-                            <span class="card-badge">FACTORING B2B</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Xepelin</h3>
+                                <span class="card-badge">FACTORING B2B</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">130</span>
+                            </button>
                         </div>
                         <p class="card-desc">Plataforma financiera integral. Transforma la gestión de cuentas por pagar y cobrar entregando liquidez inmediata mediante factoring.</p>
                     </div>
@@ -461,8 +606,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Cumplo</h3>
-                            <span class="card-badge">CROWDFUNDING</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Cumplo</h3>
+                                <span class="card-badge">CROWDFUNDING</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">88</span>
+                            </button>
                         </div>
                         <p class="card-desc">Red de financiamiento colaborativo que conecta a PYMEs chilenas que necesitan liquidez con inversionistas privados.</p>
                     </div>
@@ -477,8 +628,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Abastella</h3>
-                            <span class="card-badge">ABASTECIMIENTO</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Abastella</h3>
+                                <span class="card-badge">ABASTECIMIENTO</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">14</span>
+                            </button>
                         </div>
                         <p class="card-desc">Plataforma de abastecimiento y cotizaciones digitales. Optimiza la gestión de proveedores y el control centralizado de inventario.</p>
                     </div>
@@ -487,8 +644,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Bsale</h3>
-                            <span class="card-badge">PUNTO DE VENTA</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Bsale</h3>
+                                <span class="card-badge">PUNTO DE VENTA</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">115</span>
+                            </button>
                         </div>
                         <p class="card-desc">Sistema de punto de venta (POS) y comercio electrónico que sincroniza el control de stock en tiempo real en múltiples sucursales.</p>
                     </div>
@@ -497,8 +660,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Wibo</h3>
-                            <span class="card-badge">GASTRONOMÍA</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Wibo</h3>
+                                <span class="card-badge">GASTRONOMÍA</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">38</span>
+                            </button>
                         </div>
                         <p class="card-desc">Solución especializada para restaurantes, cafeterías y hoteles. Gestiona pedidos, comandas y mermas de inventario en tiempo real.</p>
                     </div>
@@ -513,8 +682,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Buk</h3>
-                            <span class="card-badge">HR TECH</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Buk</h3>
+                                <span class="card-badge">HR TECH</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">185</span>
+                            </button>
                         </div>
                         <p class="card-desc">Software integral de RRHH. Cubre desde el pago de remuneraciones y firmas de contrato digitales hasta el desarrollo y cultura organizacional.</p>
                     </div>
@@ -523,8 +698,14 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Talana</h3>
-                            <span class="card-badge">NÓMINA Y ASISTENCIA</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Talana</h3>
+                                <span class="card-badge">NÓMINA Y ASISTENCIA</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">142</span>
+                            </button>
                         </div>
                         <p class="card-desc">Plataforma digital para la gestión de personas. Automatiza remuneraciones, control de asistencia por app y comunicaciones internas.</p>
                     </div>
@@ -533,10 +714,16 @@
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Rex+</h3>
-                            <span class="card-badge">REMUNERACIONES</span>
+                            <div class="title-badge-group">
+                                <h3 class="card-title">Rex+</h3>
+                                <span class="card-badge">REMUNERACIONES</span>
+                            </div>
+                            <button class="upvote-btn" onclick="toggleVote(this)">
+                                <span class="upvote-icon">▲</span>
+                                <span class="upvote-count">73</span>
+                            </button>
                         </div>
-                        <p class="card-desc">Especialistas en el cálculo de remuneraciones y gestión del talento, con alta adaptabilidad a las normativas laborales chilenas (Dirección del Trabajo).</p>
+                        <p class="card-desc">Especialistas en el cálculo de remuneraciones y gestión del talento, con alta adaptabilidad a las normativas laborales chilenas.</p>
                     </div>
                     <a href="https://www.rexmas.com" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
@@ -552,6 +739,7 @@
     </footer>
 
     <script>
+        // Lógica de Búsqueda
         document.getElementById('searchInput').addEventListener('keyup', function() {
             let filter = this.value.toLowerCase();
             let detailsElements = document.querySelectorAll('details');
@@ -580,6 +768,22 @@
                 details.style.display = hasVisibleCards || filter === "" ? 'block' : 'none';
             });
         });
+
+        // Lógica del Botón de Voto (Visual)
+        function toggleVote(btn) {
+            let countSpan = btn.querySelector('.upvote-count');
+            let currentCount = parseInt(countSpan.innerText);
+
+            if (btn.classList.contains('voted')) {
+                // Quitar voto
+                btn.classList.remove('voted');
+                countSpan.innerText = currentCount - 1;
+            } else {
+                // Agregar voto
+                btn.classList.add('voted');
+                countSpan.innerText = currentCount + 1;
+            }
+        }
     </script>
 </body>
 </html>
