@@ -5,17 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecosistema Fintech & ERP Chile</title>
     <style>
+        /* Variables Globales y Paleta de Colores por Categoría */
         :root {
-            --primary-color: #2D3748;
-            --accent-color: #3182CE;
-            --bg-color: #F7FAFC;
-            --card-bg: #FFFFFF;
-            --text-main: #1A202C;
-            --text-muted: #718096;
-            --border-color: #E2E8F0;
+            --bg-color: #F8FAFC;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
             --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --radius: 8px;
+            --radius-soft: 20px;
+            --radius-pill: 50px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Colores Base */
+            --color-btn: #2563EB;
+            --color-btn-hover: #1D4ED8;
         }
+
+        /* Clases de Categorías (Definen el color de acento) */
+        .cat-erp { --theme-color: #3B82F6; --theme-bg: #EFF6FF; } /* Azul */
+        .cat-inteligencia { --theme-color: #8B5CF6; --theme-bg: #F5F3FF; } /* Morado */
+        .cat-facturacion { --theme-color: #10B981; --theme-bg: #ECFDF5; } /* Verde */
+        .cat-cobros { --theme-color: #F59E0B; --theme-bg: #FFFBEB; } /* Naranja */
+        .cat-financiamiento { --theme-color: #06B6D4; --theme-bg: #ECFEFF; } /* Cyan */
+        .cat-stock { --theme-color: #EF4444; --theme-bg: #FEF2F2; } /* Rojo */
+        .cat-rrhh { --theme-color: #EC4899; --theme-bg: #FDF2F8; } /* Rosa */
 
         body {
             font-family: var(--font-family);
@@ -23,67 +36,84 @@
             color: var(--text-main);
             margin: 0;
             padding: 0;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 3rem 1rem;
+            background-color: #ffffff;
+            color: var(--text-main);
+            padding: 4rem 1rem;
             text-align: center;
-        }
-
-        header h1 {
-            margin: 0 0 0.5rem 0;
-            font-size: 2.5rem;
-        }
-
-        header p {
-            color: #A0AEC0;
-            font-size: 1.1rem;
+            border-bottom: 1px solid #E2E8F0;
             margin-bottom: 2rem;
         }
 
-        .search-container {
+        header h1 {
+            margin: 0 0 1rem 0;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
             max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .search-container {
+            max-width: 650px;
             margin: 0 auto;
         }
 
         #searchInput {
             width: 100%;
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 50px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1.2rem 2rem;
+            font-size: 1.1rem;
+            border: 2px solid #E2E8F0;
+            border-radius: var(--radius-pill);
+            box-shadow: var(--shadow-sm);
             outline: none;
+            transition: all 0.3s ease;
             box-sizing: border-box;
+            background-color: #F8FAFC;
+        }
+
+        #searchInput:focus {
+            border-color: var(--color-btn);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
         main {
-            max-width: 1000px;
-            margin: 2rem auto;
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 0 1rem;
         }
 
+        /* Acordeón Estilizado */
         details {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
+            background-color: #ffffff;
+            border-radius: var(--radius-soft);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
             overflow: hidden;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
         }
 
         summary {
-            padding: 1.5rem;
-            font-size: 1.25rem;
-            font-weight: 600;
+            padding: 1.5rem 2rem;
+            font-size: 1.3rem;
+            font-weight: 700;
             cursor: pointer;
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #EDF2F7;
+            background-color: #ffffff;
+            border-left: 6px solid var(--theme-color);
             transition: background-color 0.2s;
         }
 
@@ -92,116 +122,138 @@
         }
 
         summary:hover {
-            background-color: #E2E8F0;
+            background-color: var(--theme-bg);
         }
 
         summary::after {
             content: '+';
-            font-size: 1.5rem;
-            color: var(--accent-color);
+            font-size: 1.8rem;
+            color: var(--theme-color);
+            font-weight: 400;
+            transition: transform 0.3s ease;
         }
 
         details[open] summary::after {
-            content: '-';
+            content: '−';
+            transform: rotate(180deg);
+        }
+
+        details[open] {
+            border-color: var(--theme-color);
         }
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            padding: 1.5rem;
-            background-color: var(--card-bg);
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-top: 1px solid #E2E8F0;
         }
 
+        /* Tarjetas con curvas y delineado superior */
         .card {
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-top: 5px solid var(--theme-color);
+            border-radius: var(--radius-soft);
+            padding: 1.8rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
         }
 
         .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.5rem;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
         .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 800;
             margin: 0;
-            color: var(--primary-color);
+            color: var(--text-main);
         }
 
         .card-badge {
             font-size: 0.75rem;
             text-transform: uppercase;
-            background-color: #EBF8FF;
-            color: var(--accent-color);
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-weight: 600;
+            background-color: var(--theme-bg);
+            color: var(--theme-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-pill);
+            font-weight: 700;
+            letter-spacing: 0.05em;
         }
 
         .card-desc {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
         }
 
         .card-link {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--accent-color);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--theme-color);
             text-decoration: none;
             align-self: flex-start;
-            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: opacity 0.2s;
         }
 
         .card-link:hover {
-            color: #2B6CB0;
+            opacity: 0.7;
             text-decoration: underline;
         }
 
         footer {
             text-align: center;
-            padding: 3rem 1rem;
-            margin-top: 3rem;
-            border-top: 1px solid var(--border-color);
+            padding: 4rem 1rem;
+            margin-top: 4rem;
+            background-color: #ffffff;
+            border-top: 1px solid #E2E8F0;
             color: var(--text-muted);
         }
 
         .btn {
             display: inline-block;
-            background-color: var(--accent-color);
+            background-color: var(--color-btn);
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             text-decoration: none;
-            border-radius: var(--radius);
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: background-color 0.2s;
+            border-radius: var(--radius-pill);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
         .btn:hover {
-            background-color: #2B6CB0;
+            background-color: var(--color-btn-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Directorio Ecosistema Fintech & ERP</h1>
-        <p>Encuentra el software ideal para administrar y escalar tu negocio en Chile.</p>
+        <h1>Ecosistema Fintech & Startups</h1>
+        <p>El directorio definitivo de plataformas y herramientas para administrar, operar y escalar tu negocio en Chile.</p>
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="🔍 Buscar por nombre, función o categoría...">
         </div>
@@ -209,7 +261,7 @@
 
     <main id="directory">
 
-        <details open>
+        <details class="cat-erp" open>
             <summary>ERP y Contabilidad Integral</summary>
             <div class="cards-grid">
                 <div class="card">
@@ -218,7 +270,7 @@
                             <h3 class="card-title">Clay</h3>
                             <span class="card-badge">ERP</span>
                         </div>
-                        <p class="card-desc">ERP contable chileno orientado a PYMEs. Gestión de documentos tributarios, contabilidad y reportes.</p>
+                        <p class="card-desc">ERP contable chileno orientado a PYMEs. Gestión de documentos tributarios, contabilidad automatizada y reportería en tiempo real.</p>
                     </div>
                     <a href="https://www.clay.cl" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
@@ -238,85 +290,35 @@
                             <h3 class="card-title">De Fontana</h3>
                             <span class="card-badge">ERP</span>
                         </div>
-                        <p class="card-desc">ERP chileno con foco en contabilidad, remuneraciones y gestión administrativa para empresas medianas.</p>
+                        <p class="card-desc">ERP chileno robusto con foco en contabilidad, remuneraciones y gestión administrativa para empresas medianas.</p>
                     </div>
                     <a href="https://www.defontana.com" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Transtecnia</h3>
-                            <span class="card-badge">ERP</span>
-                        </div>
-                        <p class="card-desc">Solución ERP para empresas constructoras y de servicios con módulos de proyectos y costos.</p>
-                    </div>
-                    <a href="https://www.transtecnia.cl" target="_blank" class="card-link">Visitar web ↗</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-header">
-                            <h3 class="card-title">SAP B1</h3>
-                            <span class="card-badge">ERP</span>
-                        </div>
-                        <p class="card-desc">ERP global de SAP para medianas empresas. Módulos de finanzas, inventario, ventas y operaciones.</p>
-                    </div>
-                    <a href="https://www.sap.com/latinamerica/products/erp/business-one.html" target="_blank" class="card-link">Visitar web ↗</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-header">
-                            <h3 class="card-title">QuickBooks</h3>
-                            <span class="card-badge">ERP</span>
-                        </div>
-                        <p class="card-desc">Software contable muy usado por freelancers y pequeñas empresas. Simple, con conexión bancaria y facturas.</p>
-                    </div>
-                    <a href="https://quickbooks.intuit.com/global/" target="_blank" class="card-link">Visitar web ↗</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-header">
-                            <h3 class="card-title">Uwigo</h3>
-                            <span class="card-badge">ERP</span>
-                        </div>
-                        <p class="card-desc">Plataforma ERP chilena enfocada en facturación electrónica, contabilidad y gestión de proveedores.</p>
-                    </div>
-                    <a href="https://www.uwigo.com" target="_blank" class="card-link">Visitar web ↗</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-header">
                             <h3 class="card-title">Odoo</h3>
-                            <span class="card-badge">ERP</span>
+                            <span class="card-badge">ERP OPEN SOURCE</span>
                         </div>
-                        <p class="card-desc">ERP open source modular. Cubre CRM, ventas, inventario, contabilidad, RRHH y más.</p>
+                        <p class="card-desc">Solución modular internacional. Cubre CRM, ventas, inventario, contabilidad y operaciones. Altamente personalizable.</p>
                     </div>
                     <a href="https://www.odoo.com" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
             </div>
         </details>
 
-        <details>
-            <summary>Conciliación Bancaria, Open Banking e Inteligencia</summary>
+        <details class="cat-inteligencia">
+            <summary>Conciliación Bancaria y Open Banking</summary>
             <div class="cards-grid">
                 <div class="card">
                     <div>
                         <div class="card-header">
                             <h3 class="card-title">CFOremoto</h3>
-                            <span class="card-badge">INTELIGENCIA</span>
+                            <span class="card-badge">CFO TECH</span>
                         </div>
-                        <p class="card-desc">Plataforma que automatiza el flujo de caja e inteligencia financiera conectándose al SII y bancos.</p>
+                        <p class="card-desc">Plataforma que automatiza el flujo de caja e inteligencia financiera conectándose directamente al SII y a tus bancos.</p>
                     </div>
                     <a href="https://cforemoto.com" target="_blank" class="card-link">Visitar web ↗</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-header">
-                            <h3 class="card-title">Fapro</h3>
-                            <span class="card-badge">INTELIGENCIA</span>
-                        </div>
-                        <p class="card-desc">Soluciones de inteligencia financiera y automatización B2B con tecnología open data para medir riesgo comercial.</p>
-                    </div>
-                    <a href="https://fapro.app" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
                 <div class="card">
                     <div>
@@ -324,19 +326,9 @@
                             <h3 class="card-title">Fintoc</h3>
                             <span class="card-badge">API BANCARIA</span>
                         </div>
-                        <p class="card-desc">API Open Banking chilena. Conecta aplicaciones con cuentas bancarias para leer movimientos en tiempo real.</p>
+                        <p class="card-desc">API de Open Banking chilena. Conecta aplicaciones de terceros con cuentas bancarias para leer movimientos en tiempo real.</p>
                     </div>
                     <a href="https://fintoc.com" target="_blank" class="card-link">Visitar web ↗</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-header">
-                            <h3 class="card-title">Floid</h3>
-                            <span class="card-badge">API BANCARIA</span>
-                        </div>
-                        <p class="card-desc">Plataforma de datos financieros abiertos. Permite conectar y verificar cuentas bancarias automáticamente.</p>
-                    </div>
-                    <a href="https://floid.com" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
                 <div class="card">
                     <div>
@@ -344,43 +336,33 @@
                             <h3 class="card-title">Chipax</h3>
                             <span class="card-badge">CONCILIACIÓN</span>
                         </div>
-                        <p class="card-desc">Gestión financiera para PYMES: concilia bancos, proyecta flujo de caja y centraliza cuentas por cobrar/pagar.</p>
+                        <p class="card-desc">Gestión financiera visual para PYMES. Concilia bancos, proyecta flujo de caja y centraliza cuentas por cobrar y pagar.</p>
                     </div>
                     <a href="https://www.chipax.com" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Due Mint</h3>
-                            <span class="card-badge">CONCILIACIÓN</span>
+                            <h3 class="card-title">Fapro</h3>
+                            <span class="card-badge">INTELIGENCIA B2B</span>
                         </div>
-                        <p class="card-desc">Herramienta de conciliación bancaria automática con conexión directa a cuentas y cuadre de movimientos.</p>
+                        <p class="card-desc">Soluciones de inteligencia financiera con tecnología open data para analizar y medir el riesgo comercial de clientes y proveedores.</p>
                     </div>
-                    <a href="https://www.duemint.com" target="_blank" class="card-link">Visitar web ↗</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-header">
-                            <h3 class="card-title">Bambo / Buk</h3>
-                            <span class="card-badge">CONCILIACIÓN</span>
-                        </div>
-                        <p class="card-desc">Módulo financiero integrado a Buk para empresas con nómina, conciliación y control de pagos de personal.</p>
-                    </div>
-                    <a href="https://www.buk.cl" target="_blank" class="card-link">Visitar web ↗</a>
+                    <a href="https://fapro.app" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
             </div>
         </details>
 
-        <details>
-            <summary>Facturación e Impuestos</summary>
+        <details class="cat-facturacion">
+            <summary>Facturación Electrónica e Impuestos</summary>
             <div class="cards-grid">
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Sii (portal)</h3>
-                            <span class="card-badge">FACTURACIÓN</span>
+                            <h3 class="card-title">Sii (Portal)</h3>
+                            <span class="card-badge">OFICIAL</span>
                         </div>
-                        <p class="card-desc">Portal oficial del Servicio de Impuestos Internos. Emisión gratuita de boletas y facturas electrónicas.</p>
+                        <p class="card-desc">Portal oficial del Servicio de Impuestos Internos. Permite la emisión gratuita de boletas y facturas electrónicas.</p>
                     </div>
                     <a href="https://homer.sii.cl" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
@@ -388,29 +370,19 @@
                     <div>
                         <div class="card-header">
                             <h3 class="card-title">Libre DTE</h3>
-                            <span class="card-badge">FACTURACIÓN</span>
+                            <span class="card-badge">OPEN SOURCE</span>
                         </div>
-                        <p class="card-desc">Plataforma gratuita de facturación electrónica conforme al SII. Ideal para independientes y microempresas.</p>
+                        <p class="card-desc">Plataforma gratuita de facturación electrónica conforme al SII. Excelente alternativa para desarrolladores e independientes.</p>
                     </div>
                     <a href="https://libredte.cl" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Bsale / Relbux</h3>
-                            <span class="card-badge">FACTURACIÓN</span>
-                        </div>
-                        <p class="card-desc">Punto de venta + facturación electrónica. Bsale es muy usado en retail; integra stock, ventas y DTE.</p>
-                    </div>
-                    <a href="https://www.bsale.cl" target="_blank" class="card-link">Visitar web ↗</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-header">
                             <h3 class="card-title">Fizko</h3>
-                            <span class="card-badge">IMPUESTOS</span>
+                            <span class="card-badge">TRIBUTARIO</span>
                         </div>
-                        <p class="card-desc">Plataforma de gestión tributaria que automatiza declaraciones de IVA, renta y otros impuestos en Chile.</p>
+                        <p class="card-desc">Plataforma móvil de gestión tributaria que automatiza declaraciones de IVA, renta y otros impuestos en Chile.</p>
                     </div>
                     <a href="https://apps.apple.com/cl/app/fizko/id6756032895" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
@@ -418,35 +390,35 @@
                     <div>
                         <div class="card-header">
                             <h3 class="card-title">Cenit</h3>
-                            <span class="card-badge">IMPUESTOS</span>
+                            <span class="card-badge">CONTADORES</span>
                         </div>
-                        <p class="card-desc">Software tributario especializado para contadores. Manejo de libros tributarios y declaraciones automáticas.</p>
+                        <p class="card-desc">Software tributario impulsado por IA, especializado para contadores. Automatiza el manejo de libros y declaraciones.</p>
                     </div>
                     <a href="https://cenit.ai" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
             </div>
         </details>
 
-        <details>
-            <summary>Invoices, Cobros y Pagos</summary>
+        <details class="cat-cobros">
+            <summary>Invoices, Cobros y Tarjetas Corporativas</summary>
             <div class="cards-grid">
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Wasabil</h3>
-                            <span class="card-badge">INVOICES</span>
+                            <h3 class="card-title">Clara</h3>
+                            <span class="card-badge">TARJETAS & GASTOS</span>
                         </div>
-                        <p class="card-desc">Gestión de cobros y cuentas por cobrar. Automatiza recordatorios y seguimiento de facturas pendientes.</p>
+                        <p class="card-desc">Tarjetas de crédito corporativas y plataforma integral de gestión de gastos para startups. Simplifica el control de viáticos y suscripciones.</p>
                     </div>
-                    <a href="https://wasabil.com/" target="_blank" class="card-link">Visitar web ↗</a>
+                    <a href="https://www.clara.com/es-cl/" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
                 <div class="card">
                     <div>
                         <div class="card-header">
                             <h3 class="card-title">Toku</h3>
-                            <span class="card-badge">COBRANZA</span>
+                            <span class="card-badge">RECAUDACIÓN</span>
                         </div>
-                        <p class="card-desc">Plataforma de cobros que centraliza cuentas por cobrar y automatiza la recolección de pagos recurrentes.</p>
+                        <p class="card-desc">Plataforma que centraliza cuentas por cobrar y automatiza la recolección de pagos recurrentes y suscripciones.</p>
                     </div>
                     <a href="https://trytoku.com" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
@@ -456,43 +428,33 @@
                             <h3 class="card-title">Bemmbo</h3>
                             <span class="card-badge">PAGOS B2B</span>
                         </div>
-                        <p class="card-desc">Software de gestión de pagos y cobros para empresas, automatizando el flujo de caja y cuentas por pagar.</p>
+                        <p class="card-desc">Software de gestión que automatiza el flujo de aprobación y pago a proveedores, conectando facturas con cuentas bancarias.</p>
                     </div>
                     <a href="https://www.bemmbo.com" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
                 <div class="card">
                     <div>
                         <div class="card-header">
-                            <h3 class="card-title">Tu Pana</h3>
-                            <span class="card-badge">INVOICES</span>
+                            <h3 class="card-title">Wasabil</h3>
+                            <span class="card-badge">COBRANZA</span>
                         </div>
-                        <p class="card-desc">Plataforma de gestión de facturas y cobros para freelancers y pequeñas empresas en Latinoamérica.</p>
+                        <p class="card-desc">Gestión automatizada de cuentas por cobrar. Envía recordatorios de pago inteligentes y hace seguimiento de facturas vencidas.</p>
                     </div>
-                    <a href="https://www.tupana.ai" target="_blank" class="card-link">Visitar web ↗</a>
-                </div>
-                <div class="card">
-                    <div>
-                        <div class="card-header">
-                            <h3 class="card-title">Pantera</h3>
-                            <span class="card-badge">ADMINISTRACIÓN</span>
-                        </div>
-                        <p class="card-desc">Software de administración para condominios y edificios: gastos comunes, morosidad, comunicaciones.</p>
-                    </div>
-                    <a href="https://adminpantera.com/" target="_blank" class="card-link">Visitar web ↗</a>
+                    <a href="https://wasabil.com/" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
             </div>
         </details>
 
-        <details>
+        <details class="cat-financiamiento">
             <summary>Financiamiento PYME y Flujo de Caja</summary>
             <div class="cards-grid">
                 <div class="card">
                     <div>
                         <div class="card-header">
                             <h3 class="card-title">Xepelin</h3>
-                            <span class="card-badge">FINANCIAMIENTO</span>
+                            <span class="card-badge">FACTORING B2B</span>
                         </div>
-                        <p class="card-desc">Plataforma B2B que transforma la gestión de cuentas por pagar y cobrar con opciones de financiamiento y factoring.</p>
+                        <p class="card-desc">Plataforma financiera integral. Transforma la gestión de cuentas por pagar y cobrar entregando liquidez inmediata mediante factoring.</p>
                     </div>
                     <a href="https://xepelin.com" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
@@ -500,11 +462,93 @@
                     <div>
                         <div class="card-header">
                             <h3 class="card-title">Cumplo</h3>
-                            <span class="card-badge">FINANCIAMIENTO</span>
+                            <span class="card-badge">CROWDFUNDING</span>
                         </div>
-                        <p class="card-desc">Plataforma de financiamiento colaborativo B2B que conecta a PYMEs con inversionistas para impulsar su liquidez.</p>
+                        <p class="card-desc">Red de financiamiento colaborativo que conecta a PYMEs chilenas que necesitan liquidez con inversionistas privados.</p>
                     </div>
                     <a href="https://cumplo.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+            </div>
+        </details>
+
+        <details class="cat-stock">
+            <summary>Control de Stock, Inventario y Logística</summary>
+            <div class="cards-grid">
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Abastella</h3>
+                            <span class="card-badge">ABASTECIMIENTO</span>
+                        </div>
+                        <p class="card-desc">Plataforma de abastecimiento y cotizaciones digitales. Optimiza la gestión de proveedores y el control centralizado de inventario.</p>
+                    </div>
+                    <a href="https://www.abastella.com" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Bsale</h3>
+                            <span class="card-badge">PUNTO DE VENTA</span>
+                        </div>
+                        <p class="card-desc">Sistema de punto de venta (POS) y comercio electrónico que sincroniza el control de stock en tiempo real en múltiples sucursales.</p>
+                    </div>
+                    <a href="https://www.bsale.cl" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Wibo</h3>
+                            <span class="card-badge">GASTRONOMÍA</span>
+                        </div>
+                        <p class="card-desc">Solución especializada para restaurantes, cafeterías y hoteles. Gestiona pedidos, comandas y mermas de inventario en tiempo real.</p>
+                    </div>
+                    <a href="https://www.wibo.la" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Tu Count</h3>
+                            <span class="card-badge">INVENTARIO MÓVIL</span>
+                        </div>
+                        <p class="card-desc">App de control de inventario simple y accesible. Permite a microempresas realizar tomas de inventario físicas usando dispositivos móviles.</p>
+                    </div>
+                    <a href="https://www.google.com/search?q=Tu+Count+app+inventario" target="_blank" class="card-link">Buscar web ↗</a>
+                </div>
+            </div>
+        </details>
+
+        <details class="cat-rrhh">
+            <summary>Gestión de Recursos Humanos y Nómina</summary>
+            <div class="cards-grid">
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Buk</h3>
+                            <span class="card-badge">HR TECH</span>
+                        </div>
+                        <p class="card-desc">Software integral de RRHH. Cubre desde el pago de remuneraciones y firmas de contrato digitales hasta el desarrollo y cultura organizacional.</p>
+                    </div>
+                    <a href="https://www.buk.cl" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Talana</h3>
+                            <span class="card-badge">NÓMINA Y ASISTENCIA</span>
+                        </div>
+                        <p class="card-desc">Plataforma digital para la gestión de personas. Automatiza remuneraciones, control de asistencia por app y comunicaciones internas.</p>
+                    </div>
+                    <a href="https://www.talana.com/es/" target="_blank" class="card-link">Visitar web ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="card-header">
+                            <h3 class="card-title">Rex+</h3>
+                            <span class="card-badge">REMUNERACIONES</span>
+                        </div>
+                        <p class="card-desc">Especialistas en el cálculo de remuneraciones y gestión del talento, con alta adaptabilidad a las normativas laborales chilenas (Dirección del Trabajo).</p>
+                    </div>
+                    <a href="https://www.rexmas.com" target="_blank" class="card-link">Visitar web ↗</a>
                 </div>
             </div>
         </details>
@@ -512,7 +556,8 @@
     </main>
 
     <footer>
-        <p>¿Falta tu plataforma o startup en este ecosistema?</p>
+        <h2 style="color: var(--text-main); margin-bottom: 0.5rem;">¿Falta tu plataforma en este ecosistema?</h2>
+        <p>Suma tu startup al directorio y llega a miles de founders en Chile.</p>
         <a href="https://forms.gle/YGNdPNBGrAAJQ5gR6" target="_blank" class="btn">Postular mi Startup</a>
     </footer>
 
